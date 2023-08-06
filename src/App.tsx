@@ -27,14 +27,14 @@ export const App = () => {
     sky: "NAN",
     time: "NAN",
     humidity: NaN,
-    precip: NaN,
+    sunHours: NaN,
   });
   const [twoDaysAwayWeather, setTwoDaysAwayWeather] = useState({
     temp: "-1000 °C",
     sky: "NAN",
     time: "NAN",
     humidity: NaN,
-    precip: NaN,
+    sunHours: NaN,
   });
 
   const testApi = async () => {
@@ -64,19 +64,19 @@ export const App = () => {
     let currentSky = current_condition[0].weatherDesc[0].value;
     let currentTime = current_condition[0].localObsDateTime;
     let currentHumidity = current_condition[0].humidity;
-    let precip =current_condition[0].precipInches;
+    let precip =current_condition[0].precipMM;
 
     // next day conditions
     let nextDaySky = res.data.weather[1].hourly[0].weatherDesc[0].value;
     let nextDayTime = res.data.weather[1].date;
     let nextDayHumidity = res.data.weather[1].hourly[0].humidity;
-    let nextDayPrecip = res.data.weather[1].hourly[0].precipInches;
+    let nextDaysunHours = res.data.weather[1].sunHour;
 
     // two days away conditions
     let twoDaysAwaySky = res.data.weather[2].hourly[0].weatherDesc[0].value;
     let twoDaysAwayTime = res.data.weather[2].date;
     let twoDaysAwayHumidity = res.data.weather[2].hourly[0].humidity;
-    let twoDaysAwayPrecip = res.data.weather[2].hourly[0].precipInches;
+    let twoDaysAwaysunHours = res.data.weather[2].sunHour;
     
   // set the weather
   setTodayWeather({
@@ -93,7 +93,7 @@ export const App = () => {
     sky: nextDaySky,
     time: nextDayTime,
     humidity: nextDayHumidity,
-    precip: nextDayPrecip,
+    sunHours: nextDaysunHours,
   });
 
   setTwoDaysAwayWeather({
@@ -101,7 +101,7 @@ export const App = () => {
     sky: twoDaysAwaySky,
     time: twoDaysAwayTime,
     humidity: twoDaysAwayHumidity,
-    precip: twoDaysAwayPrecip,
+    sunHours: twoDaysAwaysunHours,
   });
 
     // show the card
@@ -146,8 +146,8 @@ export const App = () => {
             </CardHeader>
             <CardBody>
               <Text>{todayWeather.sky}</Text>
-             <Text>humidity: {todayWeather.humidity}%</Text>
-              <Text>precipitation: {todayWeather.precip} mm</Text>
+             <Text>Humidity: {todayWeather.humidity}%</Text>
+              <Text>Precipitation: {todayWeather.precip} mm</Text>
             </CardBody>
           </Card>
           <Card>
@@ -156,8 +156,8 @@ export const App = () => {
             </CardHeader>
             <CardBody>
               <Text>{nextDayWeather.sky}</Text>
-             <Text>humidity: {nextDayWeather.humidity}%</Text>
-              <Text>precipitation: {nextDayWeather.precip} mm</Text>
+             <Text>Humidity: {nextDayWeather.humidity}%</Text>
+              <Text>Sun time: {nextDayWeather.sunHours} hours</Text>
             </CardBody>
           </Card>
           <Card>
@@ -166,8 +166,8 @@ export const App = () => {
             </CardHeader>
             <CardBody>
               <Text>{twoDaysAwayWeather.sky}</Text>
-             <Text>humidity: {twoDaysAwayWeather.humidity}%</Text>
-              <Text>precipitation: {twoDaysAwayWeather.precip} mm</Text>
+             <Text>Humidity: {twoDaysAwayWeather.humidity}%</Text>
+              <Text>Sun time: {twoDaysAwayWeather.sunHours} hours</Text>
             </CardBody>
           </Card>
     </SimpleGrid>
