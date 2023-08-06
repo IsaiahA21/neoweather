@@ -1,20 +1,15 @@
 import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
+import {ChakraProvider,Box,Text,Link,VStack, Code,Grid,theme,Button} from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { Logo } from "./Logo"
 
+const testApi = async () => {
+  console.log("hello");
+}
+
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
+    {/* <Box textAlign="center" fontSize="xl">
       <Grid minH="100vh" p={3}>
         <ColorModeSwitcher justifySelf="flex-end" />
         <VStack spacing={8}>
@@ -33,6 +28,9 @@ export const App = () => (
           </Link>
         </VStack>
       </Grid>
-    </Box>
+    </Box> */}
+    <Button onClick={() => alert("Wow")}>Contained</Button>
+     <Button onClick={() => testApi()}>Click</Button>
+
   </ChakraProvider>
 )
