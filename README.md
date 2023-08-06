@@ -1,5 +1,12 @@
 This project was bootstrapped with
 [Create React App](https://github.com/facebook/create-react-app).
+date: August 6th, 2023
+
+### reason
+
+I built this project because I just finished Mircosoft Learning courses on TypeScript and Native JavaScript and I wanted to apply what I had learned.
+The app takes two inputs the city and unit, and makes a http get call to the API: https://wttr.in/
+I've attched a couple pictures to shows what I the app should look like.
 
 ## Available Scripts
 
