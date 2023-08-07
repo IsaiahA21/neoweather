@@ -9,7 +9,6 @@ export const App = () => {
   //useState hook in React always returns an array with two elements: the state value and the function to update that state value.
   const [selectedUnit, updateUnit] = useState('c');
   const [city, setCity] = useState("Calgary");
-
   // to show the card
   const [showCard, setShowCard] = useState(false);
 
@@ -39,7 +38,16 @@ export const App = () => {
 
   const testApi = async () => {
     console.log(city, selectedUnit);
-    let res = await axios.get(`https://wttr.in/${city}?format=j1`);
+    let res = null;
+    
+    try {
+      res = await axios.get(`https://wttr.in/${city}?format=j1`);
+    }catch(e: any){
+      console.log("Error retrieving data ",e.message);
+      alert(`Error retrieving data ${e.message}`);
+      return;
+    }
+ 
     let currentDate = res.data.weather[0].date;
     
     
@@ -136,6 +144,8 @@ export const App = () => {
 
     {/*Shows the weather*/}
 
+
+{/* // if there is no error and showCard is true, then show the cards */}
   {showCard && ( // Only render the cards when showCards is true
   <Box marginTop={"8em"} backgroundColor={"white"} alignContent={"center"} alignItems={"center"} width={"50em"} mx={"auto"}>
     <Text>Result for <span style={{fontWeight:"bold"}}>{todayWeather.dataCity} on {todayWeather.time}</span></Text>
@@ -173,6 +183,7 @@ export const App = () => {
     </SimpleGrid>
   </Box>
   )}
+
   </ChakraProvider>
 
   );
